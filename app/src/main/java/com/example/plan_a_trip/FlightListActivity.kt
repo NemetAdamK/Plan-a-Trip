@@ -30,8 +30,13 @@ class FlightListActivity : AppCompatActivity() {
         )
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+
+        val countryFrom = intent.getStringExtra("CountryFrom")
+        val countryTo = intent.getStringExtra("CountryTo")
+        val dateFrom = intent.getStringExtra("DateFrom")
+        val dateTo = intent.getStringExtra("DateTo")
         val service = RetrofitClientInstance.retrofitInstance?.create(GetFlightService::class.java)
-        val dataFlight = service?.getAllData()
+        val dataFlight = service?.getAllData(countryFrom!!,countryTo!!,dateFrom!!,dateTo!!,"picky")
         dataFlight?.enqueue(object: Callback<Json4Kotlin_Base> {
             override fun onFailure(call: Call<Json4Kotlin_Base>, t: Throwable) {
                 Toast.makeText(applicationContext,"Error parsing json", Toast.LENGTH_LONG).show()

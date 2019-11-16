@@ -16,4 +16,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinnerFromCountry"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerToCountry"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFromCountry" />
+
+    <TextView
+        android:id="@+id/departureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="119dp"
+        android:text="Click to pick departure time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/spinnerToCountry"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerToCountry" />
+
+    <TextView
+        android:id="@+id/textViewArrivalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Click to set arrival time"
+        app:layout_constraintEnd_toEndOf="@+id/departureTextView"
+        app:layout_constraintStart_toStartOf="@+id/departureTextView"
+        app:layout_constraintTop_toBottomOf="@+id/departureTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

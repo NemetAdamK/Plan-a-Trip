@@ -4,9 +4,15 @@ import Data
 import Json4Kotlin_Base
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface GetFlightService {
-    @GET("/flights?flyFrom=RO&to=HU&dateFrom=18/11/2019&dateTo=12/12/2019&partner=picky")
-    fun getAllData(): Call<Json4Kotlin_Base>
+    @GET("/flights")
+
+    fun getAllData(@Query("flyFrom") user: String, @Query("to") to: String, @Query("dateFrom") dateFrom: String, @Query("dateTo") dateTo: String, @Query("partner") partner: String): Call<Json4Kotlin_Base>
+
+
+
+
 }
