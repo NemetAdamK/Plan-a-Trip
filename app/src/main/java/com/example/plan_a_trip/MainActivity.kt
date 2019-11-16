@@ -10,14 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.example.plan_a_trip.Retrofit.RetrofitClientInstance
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
+import java.text.ParseException
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,12 +45,28 @@ class MainActivity : AppCompatActivity() {
 
 
         btn_viewList.setOnClickListener(){
-            var intent = Intent(this,FlightListActivity::class.java)
-            intent.putExtra("CountryFrom",countryID[spinnerFrom.firstVisiblePosition])
-            intent.putExtra("CountryTo",countryID[spinnerTo.firstVisiblePosition])
-            intent.putExtra("DateFrom",textViewFromDate.text.toString())
-            intent.putExtra("DateTo",textViewFromTo.text.toString())
-            startActivity(intent)
+
+            if (isValidDate(textViewFromDate.text.toString()) && isValidDate(textViewFromDate.text.toString())) {
+                val date1 = SimpleDateFormat("dd/MM/yyyy").parse(textViewFromDate.text.toString())
+
+                val date2 = SimpleDateFormat("dd/MM/yyyy").parse(textViewFromTo.text.toString())
+
+                if (date1.before(date2)){
+                    val intent = Intent(this,FlightListActivity::class.java)
+                    intent.putExtra("CountryFrom",countryID[spinnerFrom.firstVisiblePosition])
+                    intent.putExtra("CountryTo",countryID[spinnerTo.firstVisiblePosition])
+                    intent.putExtra("DateFrom",textViewFromDate.text.toString())
+                    intent.putExtra("DateTo",textViewFromTo.text.toString())
+                    startActivity(intent)
+                } else{
+                    Toast.makeText(applicationContext,"Warning: First date after second date",Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(applicationContext,"Insert dates",Toast.LENGTH_SHORT).show()
+            }
+
+
+
         }
 
 
@@ -96,6 +107,18 @@ class MainActivity : AppCompatActivity() {
                 // Another interface callback
             }
         }
+    }
+
+    fun isValidDate(inDate: String): Boolean {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        dateFormat.isLenient = false
+        try {
+            dateFormat.parse(inDate.trim { it <= ' ' })
+        } catch (pe: ParseException) {
+            return false
+        }
+
+        return true
     }
 }
 

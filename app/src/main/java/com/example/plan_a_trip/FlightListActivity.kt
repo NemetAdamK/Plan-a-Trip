@@ -47,10 +47,14 @@ class FlightListActivity : AppCompatActivity() {
                 response: Response<Json4Kotlin_Base>
             ) {
                 val body = response.body()
+
                 for (element in body!!.data){
                     flights.add(Flights(element.cityFrom,element.cityTo,element.price,element.dTime))
                 }
 
+                if (flights.size == 0){
+                    Toast.makeText(applicationContext,"No data to be shown",Toast.LENGTH_SHORT).show()
+                }
                 recyclerView.adapter = FlightsAdapter(flights)
 
             }
