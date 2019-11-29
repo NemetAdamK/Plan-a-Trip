@@ -3,7 +3,7 @@ package com.example.plan_a_trip.Retrofit
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClientInstance {
+object RetrofitClientInstanceFlight {
 
     private var retrofit: Retrofit? = null
     private val BASE_URL = "https://api.skypicker.com"

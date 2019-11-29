@@ -1,9 +1,6 @@
-package com.example.plan_a_trip
+package com.example.plan_a_trip.Activities
 
-import Data
-import Json4Kotlin_Base
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +10,15 @@ import android.widget.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.text.ParseException
+import android.widget.Spinner
+import com.example.plan_a_trip.R
+import com.example.plan_a_trip.Globals.country
+import com.example.plan_a_trip.Globals.countryID
 
 
 class MainActivity : AppCompatActivity() {
 
-    var countryID = arrayOf("AE","CZ","DK","DE","GR","US","ES","FI",
-        "FR","HU","IS","IT","IL","JP","KR","LT","NL","NO","PL","BR","PT","RO",
-        "RU","SK","RS","SE","TH","TR","UA","CN","TW")
-    var country = arrayOf("United Arab Emirates","Czechia","Danemark","Germany","Greece","United States","Spain","Finnland",
-        "France","Hungary","Dunno this","Italy","Israel","Japan","South Korea","Lithuania","Netherlands","Norvegia","Poland","Brasil","Portugal","Romania",
-        "Russia","Slovakia","Serbia","Sweden","Thailand","Turkey","Ukraine","China","Taiwan")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +48,10 @@ class MainActivity : AppCompatActivity() {
                 val date2 = SimpleDateFormat("dd/MM/yyyy").parse(textViewFromTo.text.toString())
 
                 if (date1.before(date2)){
-                    val intent = Intent(this,FlightListActivity::class.java)
-                    intent.putExtra("CountryFrom",countryID[spinnerFrom.firstVisiblePosition])
-                    intent.putExtra("CountryTo",countryID[spinnerTo.firstVisiblePosition])
+                    val intent = Intent(this,
+                        FlightListActivity::class.java)
+                    intent.putExtra("CountryFrom", countryID[spinnerFrom.firstVisiblePosition])
+                    intent.putExtra("CountryTo", countryID[spinnerTo.firstVisiblePosition])
                     intent.putExtra("DateFrom",textViewFromDate.text.toString())
                     intent.putExtra("DateTo",textViewFromTo.text.toString())
                     startActivity(intent)
@@ -94,7 +91,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setSpinner(spinner: Spinner){
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, country)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item,
+            country
+        )
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner!!.setAdapter(aa)
 

@@ -1,21 +1,20 @@
-package com.example.plan_a_trip
+package com.example.plan_a_trip.Activities
 
-import Json4Kotlin_Base
+import Json4Kotlin_Base_Flights
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.plan_a_trip.Adapters.FlightsAdapter
 import com.example.plan_a_trip.Classes.Flights
-import com.example.plan_a_trip.Retrofit.RetrofitClientInstance
+import com.example.plan_a_trip.Interfaces.GetFlightService
+import com.example.plan_a_trip.R
+import com.example.plan_a_trip.Retrofit.RetrofitClientInstanceFlight
 import kotlinx.android.synthetic.main.activity_flight_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.AccessController.getContext
 
 class FlightListActivity : AppCompatActivity() {
 
@@ -35,16 +34,16 @@ class FlightListActivity : AppCompatActivity() {
         val countryTo = intent.getStringExtra("CountryTo")
         val dateFrom = intent.getStringExtra("DateFrom")
         val dateTo = intent.getStringExtra("DateTo")
-        val service = RetrofitClientInstance.retrofitInstance?.create(GetFlightService::class.java)
+        val service = RetrofitClientInstanceFlight.retrofitInstance?.create(GetFlightService::class.java)
         val dataFlight = service?.getAllData(countryFrom!!,countryTo!!,dateFrom!!,dateTo!!,"picky")
-        dataFlight?.enqueue(object: Callback<Json4Kotlin_Base> {
-            override fun onFailure(call: Call<Json4Kotlin_Base>, t: Throwable) {
+        dataFlight?.enqueue(object: Callback<Json4Kotlin_Base_Flights> {
+            override fun onFailure(call: Call<Json4Kotlin_Base_Flights>, t: Throwable) {
                 Toast.makeText(applicationContext,"Error parsing json", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(
-                call: Call<Json4Kotlin_Base>,
-                response: Response<Json4Kotlin_Base>
+                call: Call<Json4Kotlin_Base_Flights>,
+                response: Response<Json4Kotlin_Base_Flights>
             ) {
                 val body = response.body()
 

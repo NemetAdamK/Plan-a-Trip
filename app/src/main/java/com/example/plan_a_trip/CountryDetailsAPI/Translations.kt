@@ -12,19 +12,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Json4Kotlin_Base (
+data class Translations (
 
-	@SerializedName("search_id") val search_id : String,
-	@SerializedName("data") val data : List<Data>,
-	@SerializedName("connections") val connections : List<String>,
-	@SerializedName("time") val time : Int,
-	@SerializedName("currency") val currency : String,
-	@SerializedName("currency_rate") val currency_rate : Int,
-	@SerializedName("fx_rate") val fx_rate : Int,
-	@SerializedName("refresh") val refresh : List<String>,
-	@SerializedName("del") val del : Double,
-	@SerializedName("ref_tasks") val ref_tasks : List<String>,
-	@SerializedName("search_params") val search_params : Search_params,
-	@SerializedName("all_stopover_airports") val all_stopover_airports : List<String>,
-	@SerializedName("all_airlines") val all_airlines : List<String>
+	@SerializedName("de") val de : String,
+	@SerializedName("es") val es : String,
+	@SerializedName("fr") val fr : String,
+	@SerializedName("ja") val ja : String,
+	@SerializedName("it") val it : String,
+	@SerializedName("br") val br : String,
+	@SerializedName("pt") val pt : String,
+	@SerializedName("nl") val nl : String,
+	@SerializedName("hr") val hr : String,
+	@SerializedName("fa") val fa : String
 )
